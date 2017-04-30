@@ -1,0 +1,101 @@
+<div ui-view="">
+<div class="user-dashboard">
+    
+    <h1>Projects</h1>
+    
+    
+    <table st-table="projectList" class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Project Id</th>
+                <th>Project Name</th>
+                <th>Project Description</th>
+                <th>Project Email</th>
+                <th>SEAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="project in projectList">
+                <td>
+                    <a ui-sref="main.component">
+                        {{project.projectId}}
+                    </a>
+                </td>
+                <td>{{project.projectName}}</td>
+                <td>{{project.projectDescription}}</td>
+                <td>{{project.projectEmail}}</td>
+                <td>{{project.seal}}</td>
+            </tr>
+        </tbody>
+    </table> 
+
+</div>
+ <!-- Modal -->
+<div id="add_project" class="modal fade" role="dialog form" ng-submit="saveProject()">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header login-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Add Project</h4>
+            </div>
+            <form>
+                <div class="modal-body form-group">
+                            <input type="text" ng-model= "form.projectName" placeholder="Project Name" name="name">
+                            <input type="text" ng-model= "form.email" placeholder="Email" name="mail">
+                            <input type="text" ng-model= "form.sealId" placeholder="SEAL Id" name="passsword">
+                            <textarea ng-model= "form.description" placeholder="Desicrption"></textarea>
+                </div>
+                <div class="modal-footer form-actions">
+                    <button type="button" class="cancel" data-dismiss="modal">Close</button>
+                    <button type="submit" class="add-project" data-dismiss="modal"  data-toggle="modal" data-target="#add_component">Save</button>
+                </div>
+            </form>
+            
+        </div>
+
+    </div>
+</div>
+<div id="add_component" modal= "show_add_component" class="modal fade" role="dialog form" ng-submit="saveComponent()">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header login-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Add Component</h4>
+            </div>
+            <form>
+                <div class="modal-body form-group">
+                    <input type="text" placeholder="Component Name" name="name">
+                    
+                        <div class="row" ng-repeat="field in fields">
+                            <div class="col-md-3">
+                               <select class="btn btn-default btn-select">
+                                 <option ng-repeat="fieldType in availableFieldTypes" value="{{fieldType}}">
+                                     {{fieldType}}
+                                 </option>
+                              </select>
+                              
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="input-sm" ng-model="field.fieldName" style="margin:0px;" placeholder="Enter Field Name">
+                            </div>
+                            <div class="col-md-1">
+                                   <button  class= "btn-default" ng-show="$last"  ng-click="removeField()" style="font-size:17px"> x </button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-default btn-select"  ng-click="addField()">Add Field</button>
+                  
+           
+                </div>
+            </form>
+            <div class="modal-footer form-actions">
+                <button type="button" class="cancel" data-dismiss="modal">Close</button>
+                <button type="submit" class="add-component add-project" data-dismiss="modal">Save</button>
+            </div>
+
+    </div>
+</div>
+</div>

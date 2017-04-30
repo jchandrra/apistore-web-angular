@@ -1,0 +1,56 @@
+<div class="user-dashboard">
+    <h1>Components</h1>
+    <table st-table="componentList" class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Component Id</th>
+				<th>Component Name</th>
+				<th>Component Description</th>
+				<th>Component Email</th>
+				<th>SEAL</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat-start="component in componentList">
+            
+	            <td>{{component.componentId}}</td>
+				<td>{{component.componentId}}</td>
+				<td>{{component.componentId}}</td>
+				<td>{{component.componentId}}</td>
+				<td>{{component.componentId}}</td>
+	          
+	          	<td>
+	               <button ng-if="component.expanded" ng-click="component.expanded = false" class="btn btn-xs btn-info glyphicon glyphicon-chevron-down"></button>
+	          		<button ng-if="!component.expanded" ng-click="component.expanded = true" class="btn btn-xs btn-info glyphicon glyphicon-chevron-left"></button>
+	            </td>
+
+            </tr>
+          	<tr ng-if="component.expanded" ng-repeat-end="">
+            	<td colspan="5">
+            		<table st-table="componentList" class="table table-striped table-hover">
+						<thead>
+							<tr>
+								<th>Request Type</th>
+								<th>Request Url</th>
+								<th>Request Params</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="request in requestList">
+				            
+					            <td>{{request.requestType}}</td>
+								<td>{{request.requestUrl}}</td>
+								<td>{{request.requestParams}}</td>
+								<td>
+									<button class="btn-info pull-right">send</a>
+								</td>
+					          </tr>
+					    </tbody>
+					    
+					 </table>
+            	</td>
+          	</tr>
+		</tbody>
+	</table> 
+
+</div>
